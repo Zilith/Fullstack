@@ -1,0 +1,12 @@
+[![](https://mermaid.ink/img/pako:eNplUT1vAjEM_StWZuD2DEydOrSV6BgJuYm5i7hL0tgBKsR_b8Jd6UCW2O_Zz19XZaMjpRXTd6Fg6cVjn3EyAepLmMVbnzAIfOV4ZsrPRAVPDZ-ZJWy93c64ho_33ScMIol117EU54k3ljcDjezD0W8OvqMLTmkkTKkLdN6HKLTnhLMkWvEnFHpUauBsr2udpaKGq1ETMWNPRmmjmgjYTDXTGXWb0xw9qc3EW4vOvh8E4gEemp8D_TnAUqdmoAvZIj70IJV8xRPubPZJoG2yYiiQyWU83_nWBYMPd2eMFsf_Td4rt88Etaq95wm9q7e4NsKomjG1UarpMB-NMuFW47BI3P0Eq7TkQiuVY-kHpQ84cvVKcnW45YoLevsFhjmsBw?type=png)](https://mermaid.live/edit#pako:eNplUT1vAjEM_StWZuD2DEydOrSV6BgJuYm5i7hL0tgBKsR_b8Jd6UCW2O_Zz19XZaMjpRXTd6Fg6cVjn3EyAepLmMVbnzAIfOV4ZsrPRAVPDZ-ZJWy93c64ho_33ScMIol117EU54k3ljcDjezD0W8OvqMLTmkkTKkLdN6HKLTnhLMkWvEnFHpUauBsr2udpaKGq1ETMWNPRmmjmgjYTDXTGXWb0xw9qc3EW4vOvh8E4gEemp8D_TnAUqdmoAvZIj70IJV8xRPubPZJoG2yYiiQyWU83_nWBYMPd2eMFsf_Td4rt88Etaq95wm9q7e4NsKomjG1UarpMB-NMuFW47BI3P0Eq7TkQiuVY-kHpQ84cvVKcnW45YoLevsFhjmsBw)
+
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    server-->>browser: {"message":"note created"}
+    deactivate server
+
+    Note right of browser: The browser starts executing the JavaScript code that redraw the notes in the local browser
