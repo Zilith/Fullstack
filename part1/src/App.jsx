@@ -61,9 +61,9 @@ import { useState } from "react";
 
 // const Display = ({ counter }) => <>{counter}</>;
 
-// const Button = ({ title, onClick }) => (
-//   <button onClick={onClick}>{title}</button>
-// );
+const Button = (props) => (
+  <button onClick={props.handleClick}>{props.text}</button>
+);
 
 // const History = ({allClicks}) => {
 //   if (allClicks.length === 0) {
@@ -77,6 +77,7 @@ import { useState } from "react";
 //     </p>
 //   )
 // }
+
 
 const App = () => {
   // const [clicks, setClicks] = useState({
@@ -120,11 +121,20 @@ const App = () => {
 
   // setTimeout(    () => setCounter(counter + 1),    1000  )
   // console.log('rendering...', counter)
+
+  // const hello = (who) => {
+  //   const handler = () => {
+  //     console.log("hello", who);
+  //     setValue(who);
+  //   };
+  //   return handler;
+  // };
+
   const [value, setValue] = useState(10);
 
-  const hello = (who) => {
-    const handler = () => console.log("hello", who);
-    return handler;
+  const setToValue = (newValue) => {
+    console.log("value now", newValue);
+    setValue(newValue);
   };
 
   return (
@@ -136,9 +146,9 @@ const App = () => {
       <History allClicks={allClicks}/>
       <p>total {total}</p> */}
       {value}
-      <button onClick={hello("world")}>button</button>
-      <button onClick={hello("react")}>button</button>
-      <button onClick={hello("function")}>button</button>
+      <Button handleClick={() => setToValue(1000)} text="thousand" />
+      <Button handleClick={() => setToValue(0)} text="reset" />
+      <Button handleClick={() => setToValue(value + 1)} text="increment" />
     </>
   );
 };
