@@ -29,10 +29,9 @@ const App = () => {
     "The only way to go fast, is to go well.",
   ];
 
-  const a = Array(8).fill(0);
-
   const [selected, setSelected] = useState(0);
-  const [votes, setVotes] = useState(a);
+  // eslint-disable-next-line no-unused-vars
+  const [votes, setVotes] = useState(anecdotes.map(_ => 0));
 
   const random = (min, max) => {
     const randomValue = Math.floor(Math.random() * (max - min) + min);
