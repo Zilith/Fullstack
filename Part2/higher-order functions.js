@@ -46,6 +46,29 @@ const output = fs
   )
   .trim()
   .split("\n")
-  .map(line => line.split('  '))
+  .map((line) => line.split("  "))
+  .reduce((customers, line) => {
+    customers[line[0]] = customers[line[0]] || [];
+    customers[line[0]].push({
+      name: line[1],
+      price: line[2],
+      quantity: line[3],
+    });
+    console.log(line);
+    return customers;
+  }, {});
 
-console.log(output);
+console.log("output", JSON.stringify(output, null, 2));
+
+//Use of clouseres
+
+const me = "Bruce Wayne"
+
+function greetMe() {
+    console.log("hello " + me + "!")
+}
+greetMe()
+
+//Use of Currying
+
+
