@@ -37,6 +37,7 @@ const totalAmount = orders.reduce((sum, order) => sum + order.amount, 0);
 
 console.log(totalAmount);
 
+import { log } from "console";
 import fs from "fs";
 
 const output = fs
@@ -62,13 +63,54 @@ console.log("output", JSON.stringify(output, null, 2));
 
 //Use of clouseres
 
-const me = "Bruce Wayne"
+const me = "Bruce Wayne";
 
 function greetMe() {
-    console.log("hello " + me + "!")
+  console.log("hello " + me + "!");
 }
-greetMe()
+greetMe();
 
-//Use of Currying
+//Use of Currying (Te ahorra callbacks)
+
+const dragon = (name) => (size) => (element) =>
+  name + " is a " + size + " dragon that breathes " + element + "!";
+
+console.log(dragon("Morgana")("small")("darkness"));
+
+//Use of Recursion (Todo lo que se puede hacer con un for se puede hacer con recursion pero no todo lo que se puede hacer con recursion se puede hacer con for)
+
+const countDownFrom = (num) => {
+  if (num === 0) return;
+  console.log(num);
+  countDownFrom(num - 1);
+};
+
+countDownFrom(10);
+
+// Another example
+
+const categories = [
+  { id: "animals", parent: null },
+  { id: "mammals", parent: "animals" },
+  { id: "cats", parent: "mammals" },
+  { id: "dogs", parent: "mammals" },
+  { id: "chihuahua", parent: "dogs" },
+  { id: "labrador", parent: "dogs" },
+  { id: "persian", parent: "cats" },
+  { id: "siamese", parent: "cats" },
+];
+
+const makeTree = (categories, parent) => {
+  const node = {};
+  categories
+    .filter((c) => c.parent === parent)
+    .forEach((c) => (node[c.id] = makeTree(categories, c.id)));
+  if (Object.keys(node).length === 0) {
+    return null
+  }
+  return node;
+};
+
+console.log(makeTree(categories, null));
 
 
