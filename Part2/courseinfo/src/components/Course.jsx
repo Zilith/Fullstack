@@ -2,9 +2,9 @@ const Header = ({ header }) => <h1>{header}</h1>;
 
 const Content = ({ parts }) => (
   <>
-    <Part part={parts[0]} />
-    <Part part={parts[1]} />
-    <Part part={parts[2]} />
+    {parts.map((p) => (
+      <Part key={p.id} part={p} />
+    ))}
   </>
 );
 
@@ -14,12 +14,21 @@ const Part = ({ part }) => (
   </p>
 );
 
-const Course = ({ course }) => {
-  console.log(course);
+const Total = (course) => (
+  <p>exercises {course.parts.reduce((s, p) => s + p.exercises, 0)}</p>
+);
+
+const Course = ({ courses }) => {
+  console.log(courses);
   return (
     <>
-      <Header header={course.name} />
-      <Content parts={course.parts} />
+      {courses.map((c) => (
+        <>
+          <Header key={c.id} header={c.name} />
+          <Content parts={c.parts} />
+          <Total parts={c.parts} />
+        </>
+      ))}
     </>
   );
 };
