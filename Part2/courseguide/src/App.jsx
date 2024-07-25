@@ -4,6 +4,7 @@ import Note from "./components/Note";
 const App = (props) => {
   const [notes, setNotes] = useState(props.notes);
   const [newNote, setNewNote] = useState("... A new note ");
+  const [showAll, setShowAll] = useState(true);
 
   const handleNoteChange = (event) => {
     console.log(event.target.value);
@@ -18,15 +19,24 @@ const App = (props) => {
       id: notes.lenght + 1,
     };
 
-    setNotes(notes.concat(noteObject))
-    setNewNote('')
+    setNotes(notes.concat(noteObject));
+    setNewNote("");
   };
+
+  const notesToShow = showAll
+    ? notes
+    : notes.filter((note) => note.important);
 
   return (
     <div>
       <h1>Notes</h1>
+      <div>
+        <button onClick={() => setShowAll(!showAll)}>
+          show {showAll ? 'all' : 'important'}
+        </button>
+      </div>
       <ul>
-        {notes.map((n) => (
+        {notesToShow.map((n) => (
           <Note key={n.id} note={n} />
         ))}
       </ul>
