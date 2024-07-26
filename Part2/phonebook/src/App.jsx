@@ -2,7 +2,10 @@ import { useState } from "react";
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: "Arto Hellas", number: "3147553490" },
+    { name: "Arto Hellas", number: "040-123456", id: 1 },
+    { name: "Ada Lovelace", number: "39-44-5323523", id: 2 },
+    { name: "Dan Abramov", number: "12-43-234345", id: 3 },
+    { name: "Mary Poppendieck", number: "39-23-6423122", id: 4 },
   ]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
@@ -10,12 +13,12 @@ const App = () => {
 
   const addPerson = (e) => {
     e.preventDefault();
-    console.log(e.target);
     const sameName = persons.find((p) => p.name === newName);
     if (sameName === undefined) {
       const personObject = {
         name: newName,
         number: newNumber,
+        id: persons.length + 1,
       };
       setPersons(persons.concat(personObject));
       setNewName("");
@@ -40,7 +43,11 @@ const App = () => {
     console.log(e.target.value);
     const noFilter = e.target.value === "";
     setFilteredPersons(
-      noFilter ? persons : persons.filter((p) => p.name === e.target.value)
+      noFilter
+        ? persons
+        : persons.filter((p) =>
+            p.name.toLowerCase().includes(e.target.value.toLowerCase())
+          )
     );
   };
 
@@ -65,8 +72,8 @@ const App = () => {
       </form>
 
       <h2>Numbers</h2>
-      {filteredPersons.map((p, i) => (
-        <p key={i}>
+      {filteredPersons.map((p) => (
+        <p key={p.id}>
           {p.name} {p.number}
         </p>
       ))}
