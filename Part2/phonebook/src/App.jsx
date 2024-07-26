@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Filter from "./components/Filter";
+import PersonForm from "./components/PersonForm";
+import Persons from "./components/Persons";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -11,72 +14,26 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filteredPersons, setFilteredPersons] = useState(persons);
 
-  const addPerson = (e) => {
-    e.preventDefault();
-    const sameName = persons.find((p) => p.name === newName);
-    if (sameName === undefined) {
-      const personObject = {
-        name: newName,
-        number: newNumber,
-        id: persons.length + 1,
-      };
-      setPersons(persons.concat(personObject));
-      setNewName("");
-      setNewNumber("");
-      setFilteredPersons(persons.concat(personObject));
-    } else {
-      alert(`${newName} is already in the phonebook`);
-    }
-  };
-
-  const handleNewName = (e) => {
-    console.log(e.target.value);
-    setNewName(e.target.value);
-  };
-
-  const handleNewNumber = (e) => {
-    console.log(e.target.value);
-    setNewNumber(e.target.value);
-  };
-
-  const handleFilter = (e) => {
-    console.log(e.target.value);
-    const noFilter = e.target.value === "";
-    setFilteredPersons(
-      noFilter
-        ? persons
-        : persons.filter((p) =>
-            p.name.toLowerCase().includes(e.target.value.toLowerCase())
-          )
-    );
-  };
-
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with: <input onChange={handleFilter} />
-      </div>
+      <Filter persons={persons} setFilteredPersons={setFilteredPersons} />
 
       <h2>add a new</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleNewName} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNewNumber} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+
+      <PersonForm
+        persons={persons}
+        setPersons={setPersons}
+        newName={newName}
+        setNewName={setNewName}
+        newNumber={newNumber}
+        setNewNumber={setNewNumber}
+        setFilteredPersons={setFilteredPersons}
+      />
 
       <h2>Numbers</h2>
-      {filteredPersons.map((p) => (
-        <p key={p.id}>
-          {p.name} {p.number}
-        </p>
-      ))}
+
+      <Persons filteredPersons={filteredPersons} />
     </div>
   );
 };
