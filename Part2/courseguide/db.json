@@ -19,6 +19,46 @@
       "id": "4465",
       "content": "Nota con key",
       "important": false
+    },
+    {
+      "id": "a972",
+      "content": "... A new note ",
+      "important": false
+    },
+    {
+      "id": "6846",
+      "content": "Otra nota",
+      "important": true
+    },
+    {
+      "id": "bab0",
+      "content": "Otra más",
+      "important": true
+    },
+    {
+      "id": "a146",
+      "content": "esta no es importante",
+      "important": false
+    },
+    {
+      "id": "495f",
+      "content": "esta si",
+      "important": false
+    },
+    {
+      "id": "cfa2",
+      "content": "esta si que si",
+      "important": true
+    },
+    {
+      "id": "9039",
+      "content": "esta no",
+      "important": true
+    },
+    {
+      "id": "b1e6",
+      "content": "esta no",
+      "important": false
     }
   ]
 }
