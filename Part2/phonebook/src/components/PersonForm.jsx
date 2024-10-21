@@ -1,3 +1,5 @@
+import personService from "../services/persons";
+
 const PersonForm = ({
   persons,
   setPersons,
@@ -14,12 +16,14 @@ const PersonForm = ({
       const personObject = {
         name: newName,
         number: newNumber,
-        id: persons.length + 1,
       };
-      setPersons(persons.concat(personObject));
-      setNewName("");
-      setNewNumber("");
-      setFilteredPersons(persons.concat(personObject));
+
+      personService.create(personObject).then((returnedPerson) => {
+        setPersons(persons.concat(returnedPerson));
+        setNewName("");
+        setNewNumber("");
+        setFilteredPersons(persons.concat(personObject));
+      });
     } else {
       alert(`${newName} is already in the phonebook`);
     }
