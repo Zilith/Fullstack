@@ -19,6 +19,16 @@ const App = () => {
 
   useEffect(hook, []);
 
+  const handleDelete = (p) => {
+    if (window.confirm(`Delete ${p.name}?`)) {
+      personService.deletePerson(p.id).then((deletedPerson) => {
+        console.log("person deleted", deletedPerson)
+      })
+    }
+    setPersons(persons.filter((person) => person.id !== p.id));
+    setFilteredPersons(filteredPersons.filter((person) => person.id !== p.id)); 
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -38,7 +48,7 @@ const App = () => {
 
       <h2>Numbers</h2>
 
-      <Persons filteredPersons={filteredPersons} />
+      <Persons filteredPersons={filteredPersons} handleDelete={handleDelete}/>
     </div>
   );
 };
