@@ -8,6 +8,7 @@ const PersonForm = ({
   newNumber,
   setNewNumber,
   setFilteredPersons,
+  setNotificationMessage,
 }) => {
   const addPerson = (e) => {
     e.preventDefault();
@@ -24,6 +25,10 @@ const PersonForm = ({
         setNewNumber("");
         setFilteredPersons(persons.concat(returnedPerson));
         console.log("returnedPerson", returnedPerson);
+        setNotificationMessage(`Added ${returnedPerson.name} to the phonebook`);
+        setTimeout(() => {
+          setNotificationMessage(null);
+        }, 5000);
       });
     } else {
       alert(`${newName} is already in the phonebook`);
@@ -42,6 +47,12 @@ const PersonForm = ({
                 person.id !== samePerson.id ? person : returnedPerson
               )
             );
+            setNotificationMessage(
+              `Added ${returnedPerson.name} to the phonebook`
+            );
+            setTimeout(() => {
+              setNotificationMessage(null);
+            }, 5000);
           });
       }
     }
