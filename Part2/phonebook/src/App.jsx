@@ -4,6 +4,7 @@ import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
 import personService from "./services/persons";
 import Notification from "./components/Notification";
+import "./App.css";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -36,7 +37,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification Message={notificationMessage} />
+      <Notification Message={notificationMessage} Class={"noti"} />
       <Filter persons={persons} setFilteredPersons={setFilteredPersons} />
 
       <h2>add a new</h2>

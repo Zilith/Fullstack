@@ -247,7 +247,7 @@ Si la información de la persona ya está en la agenda telefónica, la aplicaci�
 
 ![2.18 captura de pantalla de la confirmación de alerta](https://fullstackopen.com/static/7353398520426bd823cf92202767653f/5a190/16e.png)
 
-#### 2.16: Agenda Telefónica paso 11
+#### 2.16: Agenda Telefónica paso 11 **Hecho**
 
 Usa el ejemplo de [mensaje de error mejorado](https://fullstackopen.com/es/part2/agregar_estilos_a_la_aplicacion_react#mensaje-de-error-mejorado) de la parte 2 como guía para mostrar una notificación que dure unos segundos después de que se ejecute una operación exitosa (se agrega una persona o se cambia un número):
 

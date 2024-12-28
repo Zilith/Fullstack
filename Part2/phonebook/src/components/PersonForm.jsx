@@ -48,7 +48,7 @@ const PersonForm = ({
               )
             );
             setNotificationMessage(
-              `Added ${returnedPerson.name} to the phonebook`
+              `Editted ${returnedPerson.name} in the phonebook`
             );
             setTimeout(() => {
               setNotificationMessage(null);

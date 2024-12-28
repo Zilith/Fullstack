@@ -1,10 +1,12 @@
-const Notification = (Message) => {
-    if (!Message) {
-        return
-    }
-    <div>
-        {Message}
+const Notification = ({ Message, Class }) => {
+  if (!Message) {
+    return null;
+  }
+  return (
+    <div className={Class}>
+      {Message}
     </div>
-}
+  );
+};
 
-export default Notification
+export default Notification;
