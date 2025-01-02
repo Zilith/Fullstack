@@ -9,6 +9,7 @@ const PersonForm = ({
   setNewNumber,
   setFilteredPersons,
   setNotificationMessage,
+  setNotificationError,
 }) => {
   const addPerson = (e) => {
     e.preventDefault();
@@ -52,6 +53,15 @@ const PersonForm = ({
             );
             setTimeout(() => {
               setNotificationMessage(null);
+            }, 5000);
+          })
+          .catch(() => {
+            setNotificationError(
+              `The person ${samePerson.name} was already deleted from the server`
+            );
+            setFilteredPersons(persons.filter((person) => person.id !== samePerson.id));
+            setTimeout(() => {
+              setNotificationError(null);
             }, 5000);
           });
       }

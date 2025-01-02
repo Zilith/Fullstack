@@ -12,6 +12,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filteredPersons, setFilteredPersons] = useState([]);
   const [notificationMessage, setNotificationMessage] = useState();
+  const [notificationError, setNotificationError] = useState();
 
   const hook = () => {
     personService.getAll().then((initialPersons) => {
@@ -38,6 +39,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <Notification Message={notificationMessage} Class={"noti"} />
+      <Notification Message={notificationError} Class={"error"} />
       <Filter persons={persons} setFilteredPersons={setFilteredPersons} />
 
       <h2>add a new</h2>
@@ -51,6 +53,7 @@ const App = () => {
         setNewNumber={setNewNumber}
         setFilteredPersons={setFilteredPersons}
         setNotificationMessage={setNotificationMessage}
+        setNotificationError={setNotificationError}
       />
 
       <h2>Numbers</h2>

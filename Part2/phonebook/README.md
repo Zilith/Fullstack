@@ -253,7 +253,7 @@ Usa el ejemplo de [mensaje de error mejorado](https://fullstackopen.com/es/part
 
 ![captura de pantalla de éxito verde agregada](https://fullstackopen.com/static/da9af454f06489ca6e7453150beda738/5a190/27e.png)
 
-#### 2.17*: Agenda Telefónica paso 12
+#### 2.17*: Agenda Telefónica paso 12 **Hecho**
 
 Abre tu aplicación en dos navegadores. **Si eliminas a una persona en el navegador 1** poco antes de intentar _cambiar el número de teléfono de la persona_ en el navegador 2, obtendrás los siguientes mensajes de error:
 
