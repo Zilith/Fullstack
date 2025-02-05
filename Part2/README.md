@@ -445,7 +445,7 @@ Cuando solo hay un país que coincide con la consulta, se muestran los datos bá
 
 **NB**: Es suficiente que tu aplicación funcione para la mayoría de los países. Algunos países, como _Sudán_, pueden ser difíciles de admitir ya que el nombre del país es parte del nombre de otro país, _Sudán del Sur_. No es necesario que te preocupes por estos casos especiales.
 
-#### 2.19*: Datos de países, paso 2
+#### 2.19*: Datos de países, paso 2 **Hecho**
 
 **Todavía hay mucho por hacer en esta parte, ¡así que no te atasques en este ejercicio!**
 
@@ -454,3 +454,34 @@ Mejora la aplicación del ejercicio anterior, de modo que cuando se muestren los
 ![adjuntar botones de muestra para cada característica del país](https://fullstackopen.com/static/b8986829d36bd14bbbd6270e0e8d2edf/5a190/19b4.png)
 
 En este ejercicio, también es suficiente que tu aplicación funcione para la mayoría de los países. Se pueden ignorar los países cuyo nombre aparece en el nombre de otro país, como _Sudán_.
+
+#### 2.20*: Datos de países, paso 3
+
+Agrega a la vista que muestra los datos de un solo país el informe meteorológico para la capital de ese país. Hay docenas de proveedores de datos meteorológicos. Una API sugerida es [https://openweathermap.org](https://openweathermap.org/). Ten en cuenta que puede pasar algunos minutos hasta que una clave API generada sea válida.
+
+![captura de pantalla de la función de informe meteorológico agregada](https://fullstackopen.com/static/5b436dff5ae7a4e1f6e15c7ba95a29be/5a190/19x.png)
+
+Si usas OpenWeatherMap, [aquí](https://openweathermap.org/weather-conditions#Icon-list) tienes la descripción de cómo obtener iconos meteorológicos.
+
+**NB**: En algunos navegadores (como Firefox), la API elegida puede enviar una respuesta de error, lo que indica que no se admite el cifrado HTTPS, aunque la URL de la solicitud comience con _http://_. Este problema se puede solucionar completando el ejercicio con Chrome.
+
+**NB**: Necesitas una clave API para usar casi todos los servicios meteorológicos. ¡No guardes la clave API en GitHub! Ni codifiques la clave API en tu código fuente. En su lugar, utiliza una [variable de entorno](https://es.vitejs.dev/guide/env-and-mode.html) para guardar la clave.
+
+Suponiendo que la clave API es _54l41n3n4v41m34rv0_, cuando la aplicación se inicia de la siguiente manera:
+
+```bash
+export VITE_SOME_KEY=54l41n3n4v41m34rv0 && npm run dev // Para Linux/macOS Bash
+($env:VITE_SOME_KEY="54l41n3n4v41m34rv0") -and (npm run dev) // Para Windows PowerShell
+set "VITE_SOME_KEY=54l41n3n4v41m34rv0" && npm run dev // Para Windows cmd.exe
+```
+
+puedes acceder al valor de la clave desde el objeto _import.meta.env_:
+
+```js
+const api_key = import.meta.env.VITE_SOME_KEY
+// variable api_key ahora tiene el valor configurado
+```
+
+Ten en cuenta que deberás reiniciar el servidor para aplicar los cambios.
+
+Este fue el último ejercicio de esta parte del curso. Es hora de subir tu código a GitHub y marcar todos tus ejercicios terminados en el [sistema de envío de ejercicios](https://studies.cs.helsinki.fi/stats/courses/fullstackopen).

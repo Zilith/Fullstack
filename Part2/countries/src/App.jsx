@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
 import Search from "./components/Search";
 import ResultData from "./components/ResultData";
 
@@ -9,6 +8,9 @@ function App() {
   const [country, setCountry] = useState("");
   const [countries, setCountries] = useState([]);
   const [data, setData] = useState([]);
+  const [weather, setWeather] = useState([]);
+  const APIKEY = import.meta.env.VITE_API_KEY;
+  const [capital, setCapital] = useState("");
 
   // Request all the countries from the API
   useEffect(() => {
@@ -19,15 +21,13 @@ function App() {
       });
   }, []);
 
+  // Request the country data from the API
   useEffect(() => {
     if (value) {
-      console.log("useEffect", country);
       const result = countries.filter((c) =>
         c.name.common.toLowerCase().includes(value.toLowerCase())
       );
-      console.log("result", result);
       if (result.length > 10) {
-        console.log("Too many matches, specify another filter", result);
         setData(result);
       } else if (result.length === 1) {
         axios
@@ -35,8 +35,16 @@ function App() {
             `https://studies.cs.helsinki.fi/restcountries/api/name/${result[0].name.common}`
           )
           .then((response) => {
-            console.log("response", response.data);
             setData([response.data]);
+            console.log("response", response.data.capital[0]);
+            setCapital(
+              response.data.capital[0]
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/\s+/g, "-")
+            );
+            console.log("capital", capital);
           });
         setCountry("");
       } else {
@@ -45,12 +53,26 @@ function App() {
     }
   }, [value]);
 
-
+  // Request the weather data from the API
+  useEffect(() => {
+    console.log("capital w", capital);
+    if (capital) {
+      axios
+        .get(
+          `https://www.meteosource.com/api/v1/free/point?place_id=${capital}&sections=current&timezone=UTC&language=en&units=metric&key=${APIKEY}`
+        )
+        .then((response) => {
+          console.log("weather", response.data);
+          setWeather(response.data);
+        });
+      setCapital("");
+    }
+  }, [capital]);
 
   return (
     <>
       <Search value={value} setValue={setValue} />
-      <ResultData data={data} />
+      <ResultData data={data} setValue={setValue} />
     </>
   );
 }

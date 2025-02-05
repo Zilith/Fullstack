@@ -1,12 +1,20 @@
 const TooManyMatches = () => <p>Too many matches</p>;
 
-const CountryList = ({ countries }) => (
-  <ul>
-    {countries.map((c) => (
-      <li key={c.name.common}>{c.name.common}</li>
-    ))}
-  </ul>
-);
+const CountryList = ({ countries, setValue }) => {
+  const handleClick = (e) => {
+    setValue(e.target.previousSibling.textContent);
+  }
+  return (
+    <ul>
+      {countries.map((c) => (
+        <li key={c.name.common}>
+          {c.name.common}
+          <button onClick={handleClick}>show</button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 const Country = ({ country }) => (
   <>
@@ -27,14 +35,14 @@ const Country = ({ country }) => (
   </>
 );
 
-const ResultData = ({ data }) => {
+const ResultData = ({ data, setValue }) => {
   return (
     <>
       <div>
         {data.length > 10 && <TooManyMatches />}
         {data.length === 1 && <Country country={data[0]} />}
         {data.length > 1 && data.length <= 10 && (
-          <CountryList countries={data} />
+          <CountryList countries={data} setValue={setValue} />
         )}
       </div>
     </>
