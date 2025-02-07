@@ -37,13 +37,7 @@ function App() {
           .then((response) => {
             setData([response.data]);
             console.log("response", response.data.capital[0]);
-            setCapital(
-              response.data.capital[0]
-                .toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .replace(/\s+/g, "-")
-            );
+            setCapital(response.data.capital[0]);
             console.log("capital", capital);
           });
         setCountry("");
@@ -55,24 +49,34 @@ function App() {
 
   // Request the weather data from the API
   useEffect(() => {
-    console.log("capital w", capital);
     if (capital) {
       axios
         .get(
-          `https://www.meteosource.com/api/v1/free/point?place_id=${capital}&sections=current&timezone=UTC&language=en&units=metric&key=${APIKEY}`
+          `https://www.meteosource.com/api/v1/free/point?place_id=${capital
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(
+              /\s+/g,
+              "-"
+            )}&sections=current&timezone=UTC&language=en&units=metric&key=${APIKEY}`
         )
         .then((response) => {
           console.log("weather", response.data);
-          setWeather(response.data);
+          setWeather([response.data]);
         });
-      setCapital("");
     }
   }, [capital]);
 
   return (
     <>
       <Search value={value} setValue={setValue} />
-      <ResultData data={data} setValue={setValue} />
+      <ResultData
+        data={data}
+        setValue={setValue}
+        weather={weather}
+        capital={capital}
+      />
     </>
   );
 }

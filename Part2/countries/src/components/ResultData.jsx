@@ -1,9 +1,11 @@
+import Weather from "./Weather";
+
 const TooManyMatches = () => <p>Too many matches</p>;
 
 const CountryList = ({ countries, setValue }) => {
   const handleClick = (e) => {
     setValue(e.target.previousSibling.textContent);
-  }
+  };
   return (
     <ul>
       {countries.map((c) => (
@@ -35,12 +37,19 @@ const Country = ({ country }) => (
   </>
 );
 
-const ResultData = ({ data, setValue }) => {
+const ResultData = ({ data, setValue, weather, capital }) => {
   return (
     <>
       <div>
         {data.length > 10 && <TooManyMatches />}
-        {data.length === 1 && <Country country={data[0]} />}
+        {data.length === 1 && (
+          <>
+            <Country country={data[0]} />
+            {weather.length === 1 && (
+              <Weather weather={weather} capital={capital} />
+            )}
+          </>
+        )}
         {data.length > 1 && data.length <= 10 && (
           <CountryList countries={data} setValue={setValue} />
         )}

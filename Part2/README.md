@@ -455,7 +455,7 @@ Mejora la aplicación del ejercicio anterior, de modo que cuando se muestren los
 
 En este ejercicio, también es suficiente que tu aplicación funcione para la mayoría de los países. Se pueden ignorar los países cuyo nombre aparece en el nombre de otro país, como _Sudán_.
 
-#### 2.20*: Datos de países, paso 3
+#### 2.20*: Datos de países, paso 3 **Hecho**
 
 Agrega a la vista que muestra los datos de un solo país el informe meteorológico para la capital de ese país. Hay docenas de proveedores de datos meteorológicos. Una API sugerida es [https://openweathermap.org](https://openweathermap.org/). Ten en cuenta que puede pasar algunos minutos hasta que una clave API generada sea válida.
 
