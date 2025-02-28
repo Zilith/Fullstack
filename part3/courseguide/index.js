@@ -34,8 +34,8 @@ app.use(express.json());
 app.use(requestLogger);
 
 const unknownEndpoint = (req, res) => {
-  res.status(404).send({ error: 'unknown endpoint' })
-}
+  res.status(404).send({ error: "unknown endpoint" });
+};
 
 const generateId = () => {
   const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0;
