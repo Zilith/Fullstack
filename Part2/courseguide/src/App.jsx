@@ -18,7 +18,6 @@ const App = () => {
   useEffect(hook, []);
 
   const handleNoteChange = (event) => {
-    console.log(event.target.value);
     setNewNote(event.target.value);
   };
 
@@ -36,7 +35,6 @@ const App = () => {
   };
 
   const toggleImportanceOf = (id) => {
-    console.log(id)
     const note = notes.find((n) => n.id === id);
     const changedNote = { ...note, important: !note.important };
 
