@@ -1,2 +1,2 @@
 # Fullstack
- This repository is for my exercises of an fullstack course
+This is for the exercies of the Fullstack Open course -> https://fullstackopen.com/en/
