@@ -23,7 +23,7 @@ let notes = [
 const requestLogger = (req, res, next) => {
   console.log("Method:", req.method);
   console.log("Path:", req.path);
-  console.log("Body:", req.Body);
+  console.log("Body:", req.body);
   console.log("---");
   next();
 };
