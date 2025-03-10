@@ -9,13 +9,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rmdir /s /q dist && cd ..\\..\\part2\\courseguide && npm run build && xcopy /E /I dist ..\\..\\part3\\courseguide\\dist",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
-
   },
   "author": "Diego Zapata",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
