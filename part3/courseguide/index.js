@@ -1,24 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
-let notes = [
-  {
-    id: 1,
-    content: "HTML is easy",
-    important: true,
-  },
-  {
-    id: 2,
-    content: "Browsers can execute only JavaScript",
-    important: false,
-  },
-  {
-    id: 3,
-    content: "GET and POST are the most important methods for HTTP protocol",
-    important: true,
-  },
-];
+const Note = require("./models/note");
 
 const requestLogger = (req, res, next) => {
   console.log("Method:", req.method);
@@ -37,29 +20,26 @@ const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: "unknown endpoint" });
 };
 
-const generateId = () => {
-  const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0;
-  return maxId + 1;
-};
-
+// default route handler
 app.get("/", (request, response) => {
   response.send("<h1>hello world</h1>");
 });
 
+// get all notes
 app.get("/api/notes", (request, response) => {
-  response.json(notes);
+  Note.find({}).then((notes) => {
+    response.json(notes);
+  });
 });
 
+// get a single note
 app.get("/api/notes/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const note = notes.find((note) => note.id === id);
-  if (note) {
+  Note.findById(request.params.id).then((note) => {
     response.json(note);
-  } else {
-    response.status(404).end();
-  }
+  });
 });
 
+// create a new note
 app.post("/api/notes", (request, response) => {
   const body = request.body;
 
@@ -69,17 +49,17 @@ app.post("/api/notes", (request, response) => {
     });
   }
 
-  const note = {
+  const note = new Note({
     content: body.content,
     important: Boolean(body.important) || false,
-    id: generateId(),
-  };
+  });
 
-  notes = notes.concat(note);
-  console.log(notes);
-  response.json(note);
+  note.save().then((savedNote) => {
+    response.json(savedNote);
+  });
 });
 
+// update a note
 app.put("/api/notes/:id", (req, res) => {
   const id = Number(req.params.id);
   const body = req.body;
@@ -88,6 +68,7 @@ app.put("/api/notes/:id", (req, res) => {
   res.json(req.body);
 });
 
+// delete a note
 app.delete("/api/notes/:id", (request, response) => {
   const id = Number(request.params.id);
   notes = notes.filter((note) => note.id !== id);
@@ -97,7 +78,7 @@ app.delete("/api/notes/:id", (request, response) => {
 
 app.use(unknownEndpoint);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port http://localhost:${PORT}`);
 });
