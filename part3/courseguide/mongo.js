@@ -6,10 +6,9 @@ if (process.argv.length < 3) {
 }
 
 const password = process.argv[2];
-const url = `mongodb+srv://Fullstack:${password}@cluster0.owsfs.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0`;  
+const url = `mongodb+srv://Fullstack:${password}@cluster0.owsfs.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.set("strictQuery", false);
-
 mongoose.connect(url);
 
 const noteSchema = new mongoose.Schema({
