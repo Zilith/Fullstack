@@ -3,7 +3,7 @@ import Button from "./Button";
 const Person = ({ p, handleDelete }) => {
   return (
     <p>
-      {p.name} {p.number}
+      {p.name} {p.phone}
       <Button onClick={() => handleDelete(p)}/>
     </p>
   );

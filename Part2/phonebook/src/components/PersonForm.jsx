@@ -5,8 +5,8 @@ const PersonForm = ({
   setPersons,
   newName,
   setNewName,
-  newNumber,
-  setNewNumber,
+  newPhone,
+  setNewPhone,
   setFilteredPersons,
   setNotificationMessage,
   setNotificationError,
@@ -17,13 +17,13 @@ const PersonForm = ({
     if (samePerson === undefined) {
       const personObject = {
         name: newName,
-        number: newNumber,
+        phone: newPhone,
       };
 
       personService.create(personObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
         setNewName("");
-        setNewNumber("");
+        setNewPhone("");
         setFilteredPersons(persons.concat(returnedPerson));
         console.log("returnedPerson", returnedPerson);
         setNotificationMessage(`Added ${returnedPerson.name} to the phonebook`);
@@ -33,8 +33,8 @@ const PersonForm = ({
       });
     } else {
       alert(`${newName} is already in the phonebook`);
-      if (window.confirm(`Replace the old number with a new one?`)) {
-        const changedPerson = { ...samePerson, number: newNumber };
+      if (window.confirm(`Replace the old phone with a new one?`)) {
+        const changedPerson = { ...samePerson, phone: newPhone };
         personService
           .update(samePerson.id, changedPerson)
           .then((returnedPerson) => {
@@ -72,8 +72,8 @@ const PersonForm = ({
     setNewName(e.target.value);
   };
 
-  const handleNewNumber = (e) => {
-    setNewNumber(e.target.value);
+  const handleNewPhone = (e) => {
+    setNewPhone(e.target.value);
   };
 
   return (
@@ -82,7 +82,7 @@ const PersonForm = ({
         name: <input value={newName} onChange={handleNewName} />
       </div>
       <div>
-        number: <input value={newNumber} onChange={handleNewNumber} />
+        phone: <input value={newPhone} onChange={handleNewPhone} />
       </div>
       <div>
         <button type="submit">add</button>

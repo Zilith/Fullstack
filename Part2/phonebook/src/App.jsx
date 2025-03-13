@@ -9,7 +9,7 @@ import "./App.css";
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
-  const [newNumber, setNewNumber] = useState("");
+  const [newPhone, setNewPhone] = useState("");
   const [filteredPersons, setFilteredPersons] = useState([]);
   const [notificationMessage, setNotificationMessage] = useState();
   const [notificationError, setNotificationError] = useState();
@@ -49,14 +49,14 @@ const App = () => {
         setPersons={setPersons}
         newName={newName}
         setNewName={setNewName}
-        newNumber={newNumber}
-        setNewNumber={setNewNumber}
+        newPhone={newPhone}
+        setNewPhone={setNewPhone}
         setFilteredPersons={setFilteredPersons}
         setNotificationMessage={setNotificationMessage}
         setNotificationError={setNotificationError}
       />
 
-      <h2>Numbers</h2>
+      <h2>Phones</h2>
 
       <Persons filteredPersons={filteredPersons} handleDelete={handleDelete} />
     </div>
