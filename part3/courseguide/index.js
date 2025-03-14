@@ -17,10 +17,6 @@ app.use(cors());
 app.use(express.json());
 app.use(requestLogger);
 
-const unknownEndpoint = (req, res) => {
-  res.status(404).send({ error: "unknown endpoint" });
-};
-
 // default route handler
 app.get("/", (request, response) => {
   response.send("<h1>hello world</h1>");
@@ -76,6 +72,10 @@ app.delete("/api/notes/:id", (request, response) => {
 
   response.status(204).end();
 });
+
+const unknownEndpoint = (req, res) => {
+  res.status(404).send({ error: "unknown endpoint" });
+};
 
 app.use(unknownEndpoint);
 
