@@ -62,7 +62,7 @@ const App = () => {
       <Notification Message={errorMessage} />
       <div>
         <button onClick={() => setShowAll(!showAll)}>
-          show {showAll ? "all" : "important"}
+          show {!showAll ? "all" : "important"}
         </button>
       </div>
       <ul>
