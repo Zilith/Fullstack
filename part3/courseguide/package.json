@@ -7,6 +7,7 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "test": "cross-env NODE_ENV=test node --test",
+    "only": "cross-env NODE_OPTIONS=--test-only NODE_ENV=test node --test",
     "build:ui": "rmdir /s /q dist && cd ..\\..\\part2\\courseguide && npm run build && xcopy /E /I dist ..\\..\\part3\\courseguide\\dist",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
   },
